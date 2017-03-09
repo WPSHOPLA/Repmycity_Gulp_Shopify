@@ -1,0 +1,12 @@
+---
+:api_key: 6217449d28995eab5f0d83694392cd14
+:password: 048d8f394faeae7f68e25d8fae2b051b
+:store: repmycity-2.myshopify.com
+:theme_id: 
+:whitelist_files:
+- layout/
+- assets/
+- config/
+- snippets/
+- templates/
+- locales/

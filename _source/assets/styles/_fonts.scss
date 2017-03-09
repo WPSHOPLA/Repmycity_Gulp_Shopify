@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'Neutratext Bold';
+    src: url('{{ "Neutratext-Bold.otf" | asset_url }}') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Neutratext Light';
+    src: url('{{ "Neutratext-Demi.otf" | asset_url }}') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

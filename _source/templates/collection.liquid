@@ -1,0 +1,112 @@
+{% assign products_per_row = settings.collections_products_per_row %}
+{% assign rows = settings.collections_rows %}
+{% assign total_products = products_per_row | times: rows %}
+
+{% paginate collection.products by total_products %}
+
+<div class="section-header section-header--breadcrumb">
+  {% include 'breadcrumb' %}
+</div>
+
+<header class="section-header section-header--large">
+  <h1 class="section-header__title{% if settings.collections_tags_enable or settings.collections_sort_enable %} section-header__title--left{% endif %}">{{ collection.title }}</h1>
+  {% if settings.collections_tags_enable or settings.collections_sort_enable %}
+  <div class="section-header__link--right">
+    {% if settings.collections_tags_enable %}
+      {% include 'collection-tags' %}
+    {% endif %}
+    {% if settings.collections_sort_enable %}
+      {% include 'collection-sorting' %}
+    {% endif %}
+  </div>
+  {% endif %}
+</header>
+
+{% if collection.description != blank %}
+  <div class="rte rte--header">
+    {{ collection.description }}
+  </div>
+  <hr class="hr--clear hr--small">
+{% endif %}
+
+{% case products_per_row %}
+  {% when '2' %}
+    {% assign grid_item_width = 'small--one-half medium--one-half large--one-half' %}
+  {% when '3' %}
+    {% assign grid_item_width = 'small--one-half medium--one-third large--one-third' %}
+  {% when '4' %}
+    {% assign grid_item_width = 'small--one-half medium--one-half large--one-quarter' %}
+  {% when '5' %}
+    {% assign grid_item_width = 'small--one-half medium--one-half large--one-fifth' %}
+{% endcase %}
+
+<div class="grid-uniform grid-link__container">
+
+  {% for product in collection.products %}
+
+    {% include 'product-grid-item' %}
+
+  {% else %}
+
+    {% if shop.products_count == 0 %}
+      {% unless emptyState %}
+        {{ 'theme-onboarding.css' | global_asset_url | stylesheet_tag }}
+        {% assign emptyState = true %}
+      {% endunless %}
+
+      <div class="grid__item">
+        <div class="helper-section">
+          <div class="helper-note">
+            <span class="helper-icon"></span>
+            <h3>{{ 'home_page.onboarding.modal_title' | t }}</h3>
+            <p>{{ 'home_page.onboarding.no_products_collection' | t }}</p>
+            <p><a class="admin-btn-primary" href="/admin/products/new">{{ 'home_page.onboarding.add_product' | t }}</a></p>
+          </div>
+
+          <div class="grid-uniform helper-content">
+            {% assign index = 1 %}
+            {% for i in (1..8) %}
+              {% case i %}
+                {% when 7 %}
+                  {% assign index = 1 %}
+                {% when 8 %}
+                  {% assign index = 2 %}
+              {% endcase %}
+              <div class="grid__item one-half large--one-quarter">
+                <a href="/admin/products" class="grid-link">
+                  <span class="grid-link__image grid-link__image--product">
+                    <span class="grid-link__image-centered">
+                      {% capture imageUrl %}//cdn.shopify.com/s/images/themes/product-{{ index }}.png{% endcapture %}
+                      {{ imageUrl | img_tag }}
+                    </span>
+                  </span>
+                  <p class="grid-link__title">{{ 'home_page.onboarding.product_title' | t }}</p>
+                  <p class="grid-link__meta">
+                    <strong>$19.99</strong>
+                  </p>
+                </a>
+              </div>
+              {% assign index = index | plus: 1 %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="grid__item">
+        <p><em>{{ 'collections.general.no_matches' | t }}</em></p>
+      </div>
+    {% endif %}
+
+  {% endfor %}
+
+</div>
+
+{% if paginate.pages > 1 %}
+  <hr class="hr--clear">
+
+  <div class="text-center">
+    {% include 'pagination-custom' %}
+  </div>
+{% endif %}
+
+{% endpaginate %}

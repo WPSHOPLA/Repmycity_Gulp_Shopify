@@ -1,0 +1,119 @@
+clean:
+  # These folders will be deleted
+  - "_site"
+
+javascript:
+  dest: "_site/assets/"
+  # custom JS filename to output
+  filename: "main.js.liquid"
+  # vendor JS filename to output
+  vendorFilename: "vendor.js"
+  # notification message
+  notification: "Running JavaScript"
+  # Paths to JavaScript libraries, which are combined into one file
+  vendorSrc:
+    - "node_modules/foundation-sites/node_modules/jquery/dist/jquery.js"
+
+    # AngularJS
+    - "node_modules/angular/angular.js"
+    - "node_modules/angular-route/angular-route.js"
+    - "node_modules/angular-resource/angular-resource.js"
+
+    # Core Foundation files, all Foundation components need this!
+    - "node_modules/foundation-sites/js/foundation.core.js"
+
+    # Individual Foundation components
+    - "node_modules/foundation-sites/js/foundation.dropdownMenu.js"
+
+    # Libraries requried by Foundation
+    - "node_modules/foundation-sites/node_modules/what-input/what-input.js"
+
+    # Individual Foundation components
+    # If you aren't using a component, just remove it from the list
+    - "node_modules/foundation-sites/js/foundation.abide.js"
+    - "node_modules/foundation-sites/js/foundation.accordion.js"
+    # - "node_modules/foundation-sites/js/foundation.accordionMenu.js"
+    # - "node_modules/foundation-sites/js/foundation.drilldown.js"
+    # - "node_modules/foundation-sites/js/foundation.dropdown.js"
+    # - "node_modules/foundation-sites/js/foundation.equalizer.js"
+    # - "node_modules/foundation-sites/js/foundation.interchange.js"
+    # - "node_modules/foundation-sites/js/foundation.magellan.js"
+    # - "node_modules/foundation-sites/js/foundation.offcanvas.js"
+    # - "node_modules/foundation-sites/js/foundation.orbit.js"
+    # - "node_modules/foundation-sites/js/foundation.responsiveMenu.js"
+    # - "node_modules/foundation-sites/js/foundation.responsiveToggle.js"
+    - "node_modules/foundation-sites/js/foundation.reveal.js"
+    # - "node_modules/foundation-sites/js/foundation.slider.js"
+    # - "node_modules/foundation-sites/js/foundation.sticky.js"
+    - "node_modules/foundation-sites/js/foundation.tabs.js"
+    # - "node_modules/foundation-sites/js/foundation.toggler.js"
+    - "node_modules/foundation-sites/js/foundation.tooltip.js"
+    - "node_modules/foundation-sites/js/foundation.util.box.js"
+    - "node_modules/foundation-sites/js/foundation.util.keyboard.js"
+    - "node_modules/foundation-sites/js/foundation.util.mediaQuery.js"
+    - "node_modules/foundation-sites/js/foundation.util.motion.js"
+    - "node_modules/foundation-sites/js/foundation.util.nest.js"
+    - "node_modules/foundation-sites/js/foundation.util.timerAndImageLoader.js"
+    # - "node_modules/foundation-sites/js/foundation.util.touch.js"
+    - "node_modules/foundation-sites/js/foundation.util.triggers.js"
+
+  src:
+    # custom js: controllers
+    - "_source/assets/javascript/main.js"
+    - "_source/assets/javascript/routes.js"
+
+    # - "_source/assets/javascript/services/**/*"
+    - "_source/assets/javascript/controllers/**/*"
+    # - "_source/assets/javascript/directives/**/*"
+
+
+sass:
+  # Autoprefixer will make sure your CSS works with these browsers
+  compatibility:
+    - "ie >= 9"
+    - "safari >= 7"
+    - "ios >= 8"
+  filename: "main.scss.liquid"
+  dest: "_site/assets/"
+  notification: "Running Sass"
+  src:
+    - "_source/assets/styles/**/*"
+  includePaths:
+    - "node_modules/foundation-sites/scss"
+    - "node_modules/motion-ui/src"
+
+shopify:
+  mainConfigSrc: "_source/config.yml"
+  mainConfigDest: "_site"
+  configSrc: "_source/config/**/*"
+  configDest: "_site/config"
+  pagesSrc: "_source/pages/**/*"
+  pagesDest: "_site/assets"
+  templatesSrc: "_source/templates/**/*"
+  templatesDest: "_site/templates"
+  snippetsSrc: "_source/snippets/**/*"
+  snippetsDest: "_site/snippets"
+  localesSrc: "_source/locales/**/*"
+  localesDest: "_site/locales"
+  layoutsSrc: "_source/layout/**/*"
+  layoutsDest: "_site/layout"
+
+images:
+  src: "_source/assets/images/**/*"
+  dest: "_site/assets/"
+
+fonts:
+  src: "_source/assets/fonts/**/*"
+  dest: "_site/assets"
+
+watch:
+  javascript: "_source/assets/javascript/**/*"
+  sass: "_source/assets/styles/**/*"
+  images: "_source/assets/images/**/*"
+  fonts: "_source/assets/fonts/**/*"
+  config: "_source/config/**/*"
+  locales: "_source/locales/**/*"
+  layouts: "_source/layout/**/*"
+  snippets: "_source/snippets/**/*"
+  templates: "_source/templates/**/*"
+  pages: "_source/pages/**/*"
